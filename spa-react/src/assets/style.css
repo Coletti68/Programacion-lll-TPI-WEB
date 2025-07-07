@@ -397,3 +397,17 @@
     0 0 4px #00ffe0;
   font-weight: 600;
 }
+
+.neon-btn-rojo {
+  border: 2px solid #ff3c3c;
+  color: #ff3c3c;
+  background-color: transparent;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+.neon-btn-rojo:hover {
+  background-color: #ff3c3c;
+  color: #fff;
+  box-shadow: 0 0 10px #ff3c3c, 0 0 20px #ff3c3c;
+}
