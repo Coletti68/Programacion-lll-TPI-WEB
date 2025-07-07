@@ -13,12 +13,12 @@ namespace MVCAlquilerAutos.Controllers
             _vehiculoService = new VehiculoService();
         }
 
-        // GET: /Vehiculos
         public async Task<IActionResult> Index()
         {
-            var vehiculos = await _vehiculoService.GetVehiculosAsync();
+            var vehiculos = await _vehiculoService.GetListadoDetalladoAsync();
             return View(vehiculos);
         }
+
 
         // GET: /Vehiculos/Create
         public IActionResult Create()

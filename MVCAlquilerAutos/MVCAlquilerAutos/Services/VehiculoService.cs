@@ -1,4 +1,5 @@
 ﻿using MVCAlquilerAutos.Models;
+using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
@@ -29,6 +30,7 @@ namespace MVCAlquilerAutos.Services
                 return new List<Vehiculo>();
             }
         }
+
 
         // ✅ Obtener un vehículo por ID
         public async Task<Vehiculo?> GetVehiculoByIdAsync(int id)
@@ -94,13 +96,34 @@ namespace MVCAlquilerAutos.Services
             try
             {
                 var url = $"{_baseUrl}/{id}/estado";
-                var content = new StringContent(JsonSerializer.Serialize(nuevoEstado), Encoding.UTF8, "application/json");
+                var content = new StringContent(
+                        System.Text.Json.JsonSerializer.Serialize(nuevoEstado),
+                        Encoding.UTF8,
+                        "application/json"
+                    );
                 var response = await _httpClient.PatchAsync(url, content);
                 return response.IsSuccessStatusCode;
             }
             catch
             {
                 return false;
+            }
+        }
+
+        public async Task<IEnumerable<Vehiculo>> GetListadoDetalladoAsync()
+        {
+            try
+            {
+                var url = $"{_baseUrl}/listado";
+                var response = await _httpClient.GetAsync(url);
+                if (!response.IsSuccessStatusCode) return [];
+
+                var json = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<IEnumerable<Vehiculo>>(json) ?? [];
+            }
+            catch
+            {
+                return [];
             }
         }
 
