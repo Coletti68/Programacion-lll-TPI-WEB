@@ -18,9 +18,9 @@ export default function LoginView() {
 
       // ✅ Guardar usuario logueado en localStorage
      localStorage.setItem("user", JSON.stringify({
-       id: datos.usuarioId, // 👈 usar usuarioId, no datos.id
-       nombre: datos.nombre, // opcional si lo devolvés
-       email: datos.email    // opcional si lo devolvés
+       id: datos.usuarioId,
+       nombre: datos.NombreCompleto, 
+       email: datos.email 
      }));
 
       setMostrarModalInicio(true);

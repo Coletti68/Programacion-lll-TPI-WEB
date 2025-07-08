@@ -1,4 +1,4 @@
-    :root {
+:root {
       --primary-color: #3498db;
       --secondary-color: #2ecc71;
       --dark-color: #2c3e50;
@@ -9,7 +9,10 @@
 
     body {
        padding-top: 80px; /* Compensación por navbar fixed */
-  }
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
 
   .hero-section {
     background: linear-gradient(135deg, #1a1a2e, #16213e);

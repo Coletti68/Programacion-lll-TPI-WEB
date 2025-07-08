@@ -3,6 +3,7 @@ import { isAuthenticated, cerrarSesion } from '../utils/authService';
 
 export default function NavBar() {
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('user'));
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark py-3 shadow-sm neon-navbar fixed-top">
@@ -22,9 +23,15 @@ export default function NavBar() {
             </li>
 
             {isAuthenticated() && (
-              <li className="nav-item">
-                <NavLink className="nav-link fw-semibold neon-link" to="/contacto">Contacto</NavLink>
-              </li>
+              <>
+                <li className="nav-item">
+                  <NavLink className="nav-link fw-semibold neon-link" to="/contacto">Contacto</NavLink>
+                </li>
+                <li className="nav-item d-flex align-items-center text-white">
+                  <span className="me-2">👤 {user?.nombre}</span>
+                  <NavLink className="nav-link fw-semibold neon-link" to="/perfil">Mi Perfil</NavLink>
+                </li>
+              </>
             )}
 
             {!isAuthenticated() && (

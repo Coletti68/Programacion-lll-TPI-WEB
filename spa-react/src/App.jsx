@@ -6,6 +6,7 @@ import VehicleCatalog from './views/VehicleCatalog';
 import LoginView from './views/LoginView';
 import RegisterView from './views/RegisterView';
 import ContactoView from './views/ContactoView';
+import PerfilView from './views/PerfilView';
 
 // import HistorialAlquileres from './views/HistorialAlquileres'; // si lo usás después
 
@@ -20,6 +21,8 @@ function App() {
           <Route path="/login" element={<LoginView />} />
           <Route path="/registro" element={<RegisterView />} />
           <Route path="/contacto" element={<ContactoView />} />
+          <Route path="/perfil" element={<PerfilView />} />
+
           {/* <Route path="/historial" element={<HistorialAlquileres />} /> */}
         </Routes>
       </main>
