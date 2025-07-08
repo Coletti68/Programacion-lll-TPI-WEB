@@ -78,9 +78,12 @@ export default function LoginView() {
                 </div>
               </div>
 
-              <Link to="/olvide-password" className="d-block mb-3 text-decoration-none text-secondary">
+             <Link
+                to="/olvide-password"
+                className="btn btn-outline-secondary d-block mb-3"
+                >
                 ¿Olvidaste tu contraseña?
-              </Link>
+             </Link>
 
               <div className="d-grid mt-4">
                 <button type="submit" className="btn neon-btn-black">
