@@ -1,2 +1,0 @@
-Vistas completas o secciones grandes del sitio
-login, home

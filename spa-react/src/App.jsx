@@ -7,8 +7,8 @@ import LoginView from './views/LoginView';
 import RegisterView from './views/RegisterView';
 import ContactoView from './views/ContactoView';
 import PerfilView from './views/PerfilView';
-
-// import HistorialAlquileres from './views/HistorialAlquileres'; // si lo usás después
+import OlvidePasswordView from './views/OlvidePasswordView';
+import ResetPasswordView from './views/ResetPasswordView'; 
 
 function App() {
   return (
@@ -22,8 +22,8 @@ function App() {
           <Route path="/registro" element={<RegisterView />} />
           <Route path="/contacto" element={<ContactoView />} />
           <Route path="/perfil" element={<PerfilView />} />
-
-          {/* <Route path="/historial" element={<HistorialAlquileres />} /> */}
+          <Route path="/olvide-password" element={<OlvidePasswordView />} />
+          <Route path="/reset-password" element={<ResetPasswordView />} />
         </Routes>
       </main>
       <Footer />

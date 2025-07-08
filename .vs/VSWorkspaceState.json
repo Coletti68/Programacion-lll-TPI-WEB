@@ -1,12 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\MVCAlquilerAutos",
-    "\\MVCAlquilerAutos\\MVCAlquilerAutos",
-    "\\MVCAlquilerAutos\\MVCAlquilerAutos\\Views",
-    "\\MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Usuario",
-    "\\spa-react\\public"
+    ""
   ],
-  "SelectedNode": "\\MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Usuario\\Edit.cshtml",
+  "SelectedNode": "\\MVCAlquilerAutos.sln",
   "PreviewInSolutionExplorer": false
 }

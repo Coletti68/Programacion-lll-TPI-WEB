@@ -20,7 +20,6 @@ export const iniciarSesion = async (email, password) => {
 
   const data = await response.json();
 
-  // Guardar sesión en localStorage
   localStorage.setItem('token', data.token);
   localStorage.setItem('usuarioId', data.usuarioId);
 

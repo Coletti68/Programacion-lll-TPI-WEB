@@ -2,7 +2,6 @@ import { API_URL } from '../apiConfig';
 
 export const registrarUsuario = async (usuario) => {
   try {
-    // 🧭 Mapear campos camelCase del frontend a PascalCase del backend
     const usuarioBackend = {
       NombreCompleto: usuario.nombre,
       Password: usuario.password,

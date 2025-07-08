@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { iniciarSesion } from '../api/auth/login';
+import { Link } from 'react-router-dom';
 
 export default function LoginView() {
   const [email, setEmail] = useState('');
@@ -16,7 +17,6 @@ export default function LoginView() {
     try {
       const datos = await iniciarSesion(email, password);
 
-      // ✅ Guardar usuario logueado en localStorage
      localStorage.setItem("user", JSON.stringify({
        id: datos.usuarioId,
        nombre: datos.NombreCompleto, 
@@ -78,9 +78,9 @@ export default function LoginView() {
                 </div>
               </div>
 
-              <a href="#" className="d-block mb-3 text-decoration-none text-secondary">
+              <Link to="/olvide-password" className="d-block mb-3 text-decoration-none text-secondary">
                 ¿Olvidaste tu contraseña?
-              </a>
+              </Link>
 
               <div className="d-grid mt-4">
                 <button type="submit" className="btn neon-btn-black">
@@ -92,7 +92,6 @@ export default function LoginView() {
         </div>
       </section>
 
-      {/* Modal de sesión exitosa */}
 {mostrarModalInicio && (
   <div
     className="modal fade show d-block"
@@ -107,7 +106,7 @@ export default function LoginView() {
       <div className="modal-content border-0 shadow-lg rounded-4">
         <div
           className="modal-header text-white rounded-top-4"
-          style={{ backgroundColor: '#3498db' }} // azul primario
+          style={{ backgroundColor: '#3498db' }} 
         >
           <h5 className="modal-title"> ¡Inicio exitoso!</h5>
           <button
@@ -150,8 +149,6 @@ export default function LoginView() {
   </div>
 )}
 
-
-      {/* Modal de cuenta inactiva */}
       {mostrarModalInactivo && (
         <div className="modal fade show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
           <div className="modal-dialog modal-dialog-centered">
@@ -173,7 +170,6 @@ export default function LoginView() {
         </div>
       )}
 
-      {/* ⚠️ Modal de error */}
       {mostrarModalError && (
         <div className="modal fade show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
           <div className="modal-dialog modal-dialog-centered">

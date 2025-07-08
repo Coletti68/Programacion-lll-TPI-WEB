@@ -429,3 +429,7 @@ footer {
   align-items: center;
   justify-content: center;
 }
+
+body * {
+  user-select: none;
+}

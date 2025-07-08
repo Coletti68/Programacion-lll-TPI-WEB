@@ -1,2 +1,0 @@
-Bloques reutilizables más chicos que pueden ir en muchas vistas
-navbar, vehicle card.

@@ -8,8 +8,10 @@ export default defineConfig({
       '/api': {
         target: 'https://localhost:5001',
         changeOrigin: true,
-        secure: false // ← ignora el certificado de desarrollo
+        secure: false
       }
-    }
+    },
+    // 👇 clave para rutas como /reset-password
+    historyApiFallback: true
   }
 });
