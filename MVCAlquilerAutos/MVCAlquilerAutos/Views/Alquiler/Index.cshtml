@@ -12,7 +12,6 @@
 <h2 class="mt-4">Listado de Alquileres</h2>
 
 <div class="mb-3">
-    <a asp-action="Create" class="btn btn-primary">Nuevo Alquiler</a>
     <a asp-action="FinalizarVencidos" class="btn btn-danger ms-2">Finalizar Vencidos</a>
     <a asp-action="GetHabilitados" class="btn btn-success ms-2">Ver Habilitados</a>
 </div>
@@ -102,9 +101,9 @@
             <td>$@item.Total.ToString("F2")</td>
             <td>@item.Estado</td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.AlquilerId" class="btn btn-info btn-sm">Ver</a>
+                
                 <a asp-action="Edit" asp-route-id="@item.AlquilerId" class="btn btn-warning btn-sm">Editar</a>
-                <a asp-action="Delete" asp-route-id="@item.AlquilerId" class="btn btn-danger btn-sm">Eliminar</a>
+               
             </td>
         </tr>
                 }

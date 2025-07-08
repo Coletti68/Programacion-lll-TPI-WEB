@@ -9,7 +9,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient<MVCAlquilerAutos.Services.IAlquilerService, MVCAlquilerAutos.Services.AlquilerService>();
 builder.Services.AddHttpClient<IUsuarioService, UsuarioService>(client =>
 {
-    client.BaseAddress = new Uri("https://localhost:51366/"); // Cambiá esto por la URL real de tu API
+    client.BaseAddress = new Uri("https://localhost:51055/"); // Cambiá esto por la URL real de tu API
 });
 
 

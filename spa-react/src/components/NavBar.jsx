@@ -8,7 +8,7 @@ export default function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark py-3 shadow-sm neon-navbar fixed-top">
       <div className="container">
-        <NavLink className="navbar-brand fw-bold fs-4 neon-text" to="/">CarRentalEasy</NavLink>
+        <NavLink className="navbar-brand fw-bold fs-4 neon-text" to="/">RentCars</NavLink>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span className="navbar-toggler-icon"></span>
         </button>
