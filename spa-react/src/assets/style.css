@@ -411,3 +411,7 @@
   color: #fff;
   box-shadow: 0 0 10px #ff3c3c, 0 0 20px #ff3c3c;
 }
+
+body * {
+  user-select: none;
+}

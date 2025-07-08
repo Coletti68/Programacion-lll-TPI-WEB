@@ -6,15 +6,38 @@ export default function LoginView() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [mostrarModalInicio, setMostrarModalInicio] = useState(false);
+  const [mostrarModalInactivo, setMostrarModalInactivo] = useState(false);
+  const [mostrarModalError, setMostrarModalError] = useState(false);
+  const [mensajeError, setMensajeError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const datos = await iniciarSesion(email, password);
-      setMostrarModalInicio(true); // Mostramos el modal facherito
+
+      // ✅ Guardar usuario logueado en localStorage
+     localStorage.setItem("user", JSON.stringify({
+       id: datos.usuarioId, // 👈 usar usuarioId, no datos.id
+       nombre: datos.nombre, // opcional si lo devolvés
+       email: datos.email    // opcional si lo devolvés
+     }));
+
+      setMostrarModalInicio(true);
     } catch (error) {
-      alert('❌ Error al iniciar sesión: ' + error.message);
+      const status = error?.response?.status;
+      const mensaje = error?.response?.data?.mensaje || '❌ Error inesperado al iniciar sesión.';
+
+      if (status === 403 && mensaje.toLowerCase().includes('inactiva')) {
+        setMensajeError(mensaje);
+        setMostrarModalInactivo(true);
+      } else if (status === 401 && mensaje.toLowerCase().includes('credenciales')) {
+        setMensajeError('Correo o contraseña incorrectos. Verificá tus datos.');
+        setMostrarModalError(true);
+      } else {
+        setMensajeError('Ocurrió un error inesperado. Contactá con soporte si el problema persiste.');
+        setMostrarModalError(true);
+      }
     }
   };
 
@@ -22,13 +45,9 @@ export default function LoginView() {
     <>
       <section className="py-5" style={{ backgroundColor: '#16213e' }}>
         <div className="container">
-          <div
-            className="auth-container mx-auto p-4 p-md-5 rounded shadow"
-            style={{ maxWidth: '500px', backgroundColor: '#ffffff' }}
-          >
+          <div className="auth-container mx-auto p-4 p-md-5 rounded shadow" style={{ maxWidth: '500px', backgroundColor: '#ffffff' }}>
             <h2 className="text-center mb-4 neon-text-b">Inicie sesión</h2>
             <form onSubmit={handleSubmit}>
-              {/* Email */}
               <div className="mb-3">
                 <label className="form-label">Correo Electrónico</label>
                 <input
@@ -40,7 +59,6 @@ export default function LoginView() {
                 />
               </div>
 
-              {/* Contraseña */}
               <div className="mb-3">
                 <label className="form-label">Contraseña</label>
                 <div className="position-relative">
@@ -75,7 +93,7 @@ export default function LoginView() {
         </div>
       </section>
 
-      {/* ✅ Modal pos-login */}
+      {/* ✅ Modal de sesión exitosa */}
       {mostrarModalInicio && (
         <div className="modal fade show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
           <div className="modal-dialog modal-dialog-centered">
@@ -105,6 +123,50 @@ export default function LoginView() {
                   }}
                 >
                   Volver al Inicio
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ❌ Modal de cuenta inactiva */}
+      {mostrarModalInactivo && (
+        <div className="modal fade show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content border border-danger">
+              <div className="modal-header">
+                <h5 className="modal-title text-danger">🚫 Cuenta Inactiva</h5>
+                <button type="button" className="btn-close" onClick={() => setMostrarModalInactivo(false)}></button>
+              </div>
+              <div className="modal-body">
+                <p>{mensajeError}</p>
+              </div>
+              <div className="modal-footer">
+                <button className="btn btn-outline-secondary" onClick={() => setMostrarModalInactivo(false)}>
+                  Cerrar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ⚠️ Modal de error */}
+      {mostrarModalError && (
+        <div className="modal fade show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content border border-warning">
+              <div className="modal-header">
+                <h5 className="modal-title text-warning">⚠️ Error</h5>
+                <button type="button" className="btn-close" onClick={() => setMostrarModalError(false)}></button>
+              </div>
+              <div className="modal-body">
+                <p>{mensajeError}</p>
+              </div>
+              <div className="modal-footer">
+                <button className="btn btn-outline-secondary" onClick={() => setMostrarModalError(false)}>
+                  Cerrar
                 </button>
               </div>
             </div>

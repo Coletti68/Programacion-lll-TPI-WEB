@@ -12,10 +12,43 @@ export default function RegisterView() {
   const [email, setEmail] = useState('');
   const [direccion, setDireccion] = useState('');
   const [mostrarModalRegistro, setMostrarModalRegistro] = useState(false);
+  const [mostrarModalError, setMostrarModalError] = useState(false);
+  const [mensajeError, setMensajeError] = useState('');
   const navigate = useNavigate();
+
+  const reglasDni = {
+    Argentina: 8,
+    Brasil: 11,
+    Paraguay: 6,
+    Chile: 9,
+  };
+
+  const calcularEdad = (fecha) => {
+    const hoy = new Date();
+    const nacimiento = new Date(fecha);
+    let edad = hoy.getFullYear() - nacimiento.getFullYear();
+    const mes = hoy.getMonth() - nacimiento.getMonth();
+    if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) edad--;
+    return edad;
+  };
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    if (reglasDni[pais]) {
+      const longitudEsperada = reglasDni[pais];
+      if (!dni || dni.length !== longitudEsperada) {
+        setMensajeError(`El DNI debe tener ${longitudEsperada} dígitos para ${pais}`);
+        setMostrarModalError(true);
+        return;
+      }
+    }
+
+    if (!fechaNacimiento || calcularEdad(fechaNacimiento) < 18) {
+      setMensajeError('Debés tener al menos 18 años para registrarte.');
+      setMostrarModalError(true);
+      return;
+    }
 
     const usuario = {
       pais,
@@ -28,26 +61,13 @@ export default function RegisterView() {
       direccion,
     };
 
-    const reglasDni = {
-      Argentina: 8,
-      Brasil: 11,
-      Paraguay: 6,
-      Chile: 9,
-    };
-
-    if (reglasDni[pais]) {
-      const longitudEsperada = reglasDni[pais];
-      if (!dni || dni.length !== longitudEsperada) {
-        alert(`El DNI debe tener ${longitudEsperada} dígitos para ${pais}`);
-        return;
-      }
-    }
-
     try {
       await registrarUsuario(usuario);
       setMostrarModalRegistro(true);
     } catch (error) {
-      alert('❌ Error: ' + error.message);
+      const mensaje = error?.response?.data?.mensaje || 'Ocurrió un error al registrar la cuenta.';
+      setMensajeError(mensaje);
+      setMostrarModalError(true);
     }
   };
 
@@ -61,7 +81,6 @@ export default function RegisterView() {
           >
             <h2 className="text-center mb-4 neon-text-b">Crear Cuenta</h2>
             <form onSubmit={handleRegister}>
-              {/* País */}
               <div className="mb-3">
                 <label className="form-label">País</label>
                 <select className="form-select neon-input" value={pais} onChange={(e) => setPais(e.target.value)}>
@@ -73,7 +92,6 @@ export default function RegisterView() {
                 </select>
               </div>
 
-              {/* Nombre */}
               <div className="mb-3">
                 <label className="form-label">Nombre completo *</label>
                 <input
@@ -85,7 +103,6 @@ export default function RegisterView() {
                 />
               </div>
 
-              {/* Contraseña */}
               <div className="mb-3">
                 <label className="form-label">Contraseña *</label>
                 <input
@@ -98,19 +115,26 @@ export default function RegisterView() {
                 />
               </div>
 
-              {/* DNI */}
               <div className="mb-3">
                 <label className="form-label">DNI</label>
                 <input
                   type="text"
                   className="form-control neon-input"
                   placeholder="Ingrese su documento"
+                  maxLength={pais && reglasDni[pais] ? reglasDni[pais] : 20}
                   value={dni}
-                  onChange={(e) => setDni(e.target.value)}
+                  onChange={(e) => {
+                    const soloNumeros = e.target.value.replace(/\D/g, '');
+                    setDni(soloNumeros);
+                  }}
                 />
+                {reglasDni[pais] && (
+                  <small className="form-text text-secondary">
+                    El DNI debe tener {reglasDni[pais]} dígitos para {pais}.
+                  </small>
+                )}
               </div>
 
-              {/* Fecha de nacimiento */}
               <div className="mb-3">
                 <label className="form-label">Fecha de nacimiento</label>
                 <input
@@ -121,7 +145,6 @@ export default function RegisterView() {
                 />
               </div>
 
-              {/* Teléfono */}
               <div className="mb-3">
                 <label className="form-label">Teléfono</label>
                 <input
@@ -132,7 +155,6 @@ export default function RegisterView() {
                 />
               </div>
 
-              {/* Email */}
               <div className="mb-3">
                 <label className="form-label">Correo electrónico *</label>
                 <input
@@ -144,7 +166,6 @@ export default function RegisterView() {
                 />
               </div>
 
-              {/* Dirección */}
               <div className="mb-3">
                 <label className="form-label">Dirección</label>
                 <input
@@ -183,6 +204,28 @@ export default function RegisterView() {
                 </button>
                 <button className="btn btn-outline-secondary" onClick={() => navigate('/')}>
                   Volver al Inicio
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ⚠️ Modal de error visual */}
+      {mostrarModalError && (
+        <div className="modal fade show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content border border-warning">
+              <div className="modal-header">
+                <h5 className="modal-title text-warning">⚠️ Registro fallido</h5>
+                <button className="btn-close" onClick={() => setMostrarModalError(false)}></button>
+              </div>
+              <div className="modal-body">
+                <p>{mensajeError}</p>
+              </div>
+              <div className="modal-footer">
+                <button className="btn btn-outline-secondary" onClick={() => setMostrarModalError(false)}>
+                  Cerrar
                 </button>
               </div>
             </div>
