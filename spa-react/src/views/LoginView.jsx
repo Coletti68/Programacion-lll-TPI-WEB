@@ -43,7 +43,7 @@ export default function LoginView() {
 
   return (
     <>
-      <section className="py-5" style={{ backgroundColor: '#16213e' }}>
+      <section className="py-5" style={{ backgroundColor: '#ffffff' }}>
         <div className="container">
           <div className="auth-container mx-auto p-4 p-md-5 rounded shadow" style={{ maxWidth: '500px', backgroundColor: '#ffffff' }}>
             <h2 className="text-center mb-4 neon-text-b">Inicie sesión</h2>
@@ -58,7 +58,6 @@ export default function LoginView() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-
               <div className="mb-3">
                 <label className="form-label">Contraseña</label>
                 <div className="position-relative">
@@ -93,44 +92,66 @@ export default function LoginView() {
         </div>
       </section>
 
-      {/* ✅ Modal de sesión exitosa */}
-      {mostrarModalInicio && (
-        <div className="modal fade show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content border border-success">
-              <div className="modal-header">
-                <h5 className="modal-title text-success">🎉 Inicio de sesión exitoso</h5>
-                <button type="button" className="btn-close" onClick={() => setMostrarModalInicio(false)}></button>
-              </div>
-              <div className="modal-body">
-                <p>¡Bienvenido/a! ¿Querés ir a ver la flota y arrancar tu alquiler?</p>
-              </div>
-              <div className="modal-footer">
-                <button
-                  className="btn btn-outline-success"
-                  onClick={() => {
-                    setMostrarModalInicio(false);
-                    navigate('/vehiculos');
-                  }}
-                >
-                  Ver Flota 🚗
-                </button>
-                <button
-                  className="btn btn-outline-secondary"
-                  onClick={() => {
-                    setMostrarModalInicio(false);
-                    navigate('/');
-                  }}
-                >
-                  Volver al Inicio
-                </button>
-              </div>
-            </div>
-          </div>
+      {/* Modal de sesión exitosa */}
+{mostrarModalInicio && (
+  <div
+    className="modal fade show d-block"
+    tabIndex="-1"
+    style={{
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      backdropFilter: 'blur(3px)',
+      zIndex: 1055
+    }}
+  >
+    <div className="modal-dialog modal-dialog-centered">
+      <div className="modal-content border-0 shadow-lg rounded-4">
+        <div
+          className="modal-header text-white rounded-top-4"
+          style={{ backgroundColor: '#3498db' }} // azul primario
+        >
+          <h5 className="modal-title"> ¡Inicio exitoso!</h5>
+          <button
+            type="button"
+            className="btn-close btn-close-white"
+            onClick={() => setMostrarModalInicio(false)}
+          ></button>
         </div>
-      )}
+        <div className="modal-body text-center">
+          <p className="fs-5 mb-3">Bienvenido/a</p>
+          <p className="text-muted">¿Querés ver los vehículos disponibles y comenzar tu alquiler?</p>
+        </div>
+        <div className="modal-footer justify-content-center">
+          <button
+            className="btn px-4 rounded-pill me-2"
+            style={{
+              backgroundColor: '#00ffff',
+              color: '#fff',
+              border: 'none'
+            }}
+            onClick={() => {
+              setMostrarModalInicio(false);
+              navigate('/vehiculos');
+            }}
+          >
+            Ver Flota 🚗
+          </button>
+          <button
+            className="btn btn-outline-light text-dark border-secondary px-4 rounded-pill"
+            onClick={() => {
+              setMostrarModalInicio(false);
+              navigate('/');
+            }}
+          >
+            Ir al Inicio
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
 
-      {/* ❌ Modal de cuenta inactiva */}
+
+      {/* Modal de cuenta inactiva */}
       {mostrarModalInactivo && (
         <div className="modal fade show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
           <div className="modal-dialog modal-dialog-centered">

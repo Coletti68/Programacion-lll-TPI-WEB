@@ -73,7 +73,7 @@ export default function RegisterView() {
 
   return (
     <>
-      <section className="py-5" style={{ background: 'linear-gradient(135deg, #1a1a2e, #16213e)' }}>
+      <section className="py-5" style={{ background: 'linear-gradient(135deg, #ffffff, #ffffff)' }}>
         <div className="container">
           <div
             className="auth-container mx-auto p-4 p-md-5 rounded shadow-lg text-white neon-glow"
