@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\54377\\Documents\\GitHub\\Programacion-lll-TPI-WEB\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\54377\\Documents\\GitHub\\Programacion-lll-TPI-WEB\\MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Account\\Register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Account\\Register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\54377\\Documents\\GitHub\\Programacion-lll-TPI-WEB\\MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Account\\Login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Account\\Login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\54377\\Documents\\GitHub\\Programacion-lll-TPI-WEB\\MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Account\\Register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Account\\Register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\54377\\Documents\\GitHub\\Programacion-lll-TPI-WEB\\MVCAlquilerAutos\\MVCAlquilerAutos\\Services\\AlquilerService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,26 +58,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Register.cshtml",
               "DocumentMoniker": "C:\\Users\\54377\\Documents\\GitHub\\Programacion-lll-TPI-WEB\\MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Account\\Register.cshtml",
               "ToolTip": "C:\\Users\\54377\\Documents\\GitHub\\Programacion-lll-TPI-WEB\\MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Account\\Register.cshtml",
               "RelativeToolTip": "MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Account\\Register.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-07-07T21:01:04.121Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Users\\54377\\Documents\\GitHub\\Programacion-lll-TPI-WEB\\MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Account\\Login.cshtml",
               "ToolTip": "C:\\Users\\54377\\Documents\\GitHub\\Programacion-lll-TPI-WEB\\MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Account\\Login.cshtml",
               "RelativeToolTip": "MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Account\\Login.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-07-07T21:00:34.702Z",
               "EditorCaption": ""
@@ -92,8 +92,7 @@
               "RelativeToolTip": "MVCAlquilerAutos\\MVCAlquilerAutos\\Services\\AlquilerService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T21:00:04.999Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-07T21:00:04.999Z"
             },
             {
               "$type": "Document",
@@ -105,8 +104,7 @@
               "RelativeToolTip": "MVCAlquilerAutos\\MVCAlquilerAutos\\Services\\IAlquilerService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T20:59:50.479Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-07T20:59:50.479Z"
             },
             {
               "$type": "Document",
@@ -118,8 +116,7 @@
               "RelativeToolTip": "MVCAlquilerAutos\\MVCAlquilerAutos\\Models\\Vehiculo.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T20:59:46.776Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-07T20:59:46.776Z"
             },
             {
               "$type": "Document",
@@ -131,8 +128,7 @@
               "RelativeToolTip": "MVCAlquilerAutos\\MVCAlquilerAutos\\Services\\AuthService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T20:59:36.044Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-07T20:59:36.044Z"
             },
             {
               "$type": "Document",
@@ -144,8 +140,7 @@
               "RelativeToolTip": "MVCAlquilerAutos\\MVCAlquilerAutos\\Services\\IAuthServices.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T20:59:19.21Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-07T20:59:19.21Z"
             },
             {
               "$type": "Document",
@@ -157,8 +152,7 @@
               "RelativeToolTip": "MVCAlquilerAutos\\MVCAlquilerAutos\\Models\\Register.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T20:58:24.453Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-07T20:58:24.453Z"
             },
             {
               "$type": "Document",
@@ -170,8 +164,7 @@
               "RelativeToolTip": "MVCAlquilerAutos\\MVCAlquilerAutos\\Models\\Login.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T20:58:08.629Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-07T20:58:08.629Z"
             },
             {
               "$type": "Document",
@@ -183,8 +176,7 @@
               "RelativeToolTip": "MVCAlquilerAutos\\MVCAlquilerAutos\\Controllers\\AccountController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T20:56:45.515Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-07T20:56:45.515Z"
             }
           ]
         }

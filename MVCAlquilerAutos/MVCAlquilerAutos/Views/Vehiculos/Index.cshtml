@@ -4,17 +4,18 @@
     ViewData["Title"] = "Listado de Vehículos";
 }
 
-<h2>Listado de Vehículos</h2>
+<h2 class="mt-4">Listado de Vehículos</h2>
 
 <a class="btn btn-success mb-3" asp-action="Create">+ Crear Vehículo</a>
 
-<table class="table table-striped">
+<table class="table table-striped mt-3">
     <thead class="table-dark">
         <tr>
             <th>Imagen</th>
             <th>ID</th>
             <th>Marca</th>
             <th>Modelo</th>
+            <th>Año</th>
             <th>Placa</th>
             <th>Color</th>
             <th>Tipo</th>
@@ -23,35 +24,52 @@
         </tr>
     </thead>
     <tbody>
-        @if (!Model.Any())
+        @foreach (var v in Model)
         {
-            <tr>
-                <td colspan="10" class="text-center text-muted">No hay vehículos registrados.</td>
-            </tr>
-        }
-        else
-        {
-            foreach (var v in Model)
+            var placa = v.Placa?.ToLower();
+            var color = v.Color?.ToLower();
+            var modelo = v.Modelo?.ToLower();
+
+            var posiblesImagenes = new[]
             {
-                <tr>
-                    <td>
-                        <img src="~/img/vehiculos/@(v.Placa?.ToLower()).jpg"
-                             alt="Imagen de @v.Modelo"
-                             width="100"
-                             height="60"
-                             style="object-fit:cover;"
-                             onerror="this.src='@Url.Content("~/img/vehiculos/default.jpg")'" />
-                    </td>
-                    <td>@v.VehiculoId</td>
-                    <td>@v.Marca</td>
-                    <td>@v.Modelo</td>
-                    <td>@v.Placa</td>
-                    <td>@v.Color</td>
-                    <td>@v.Tipo</td>
-                    <td>@v.PrecioPorDia.ToString("C")</td>
-                    <td>@v.Estado</td>
-                </tr>
-            }
+        Url.Content($"~/img/vehiculos/{placa}.jpg"),
+        Url.Content($"~/img/vehiculos/{color}.png"),
+        Url.Content($"~/img/vehiculos/{modelo}.jpg"),
+        Url.Content("~/img/vehiculos/default.jpg")
+        };
+            <tr>
+                <td>
+                    <img id="img-@v.VehiculoId"
+                         src="@posiblesImagenes[0]"
+                         alt="Imagen de @v.Modelo"
+                         width="100"
+                         height="60"
+                         style="object-fit:cover;" />
+
+                    <script>
+                        (function () {
+                            const img = document.getElementById("img-@v.VehiculoId");
+                            const fallbacks = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(posiblesImagenes.Skip(1).ToList()));
+                            let index = 0;
+
+                            img.onerror = function () {
+                                if (index < fallbacks.length) {
+                                    img.src = fallbacks[index++];
+                                }
+                            };
+                        })();
+                    </script>
+                </td>
+                <td>@v.VehiculoId</td>
+                <td>@v.Marca</td>
+                <td>@v.Modelo</td>
+                <td>@v.Anio</td>
+                <td>@v.Placa</td>
+                <td>@v.Color</td>
+                <td>@v.Tipo</td>
+                <td>@v.PrecioPorDia.ToString("C")</td>
+                <td>@v.Estado</td>
+            </tr>
         }
     </tbody>
 </table>
