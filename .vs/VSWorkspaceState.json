@@ -1,16 +1,12 @@
 {
   "ExpandedNodes": [
     "",
+    "\\MVCAlquilerAutos",
     "\\MVCAlquilerAutos\\MVCAlquilerAutos",
     "\\MVCAlquilerAutos\\MVCAlquilerAutos\\Views",
-    "\\spa-react",
-    "\\spa-react\\public",
-    "\\spa-react\\src\\api",
-    "\\spa-react\\src\\assets",
-    "\\spa-react\\src\\components",
-    "\\spa-react\\src\\utils",
-    "\\spa-react\\src\\views"
+    "\\MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Usuario",
+    "\\spa-react\\public"
   ],
-  "SelectedNode": "\\MVCAlquilerAutos",
+  "SelectedNode": "\\MVCAlquilerAutos\\MVCAlquilerAutos\\Views\\Usuario\\Edit.cshtml",
   "PreviewInSolutionExplorer": false
 }
