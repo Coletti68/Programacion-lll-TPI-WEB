@@ -6,7 +6,7 @@
 
 <h2 class="mt-4">Listado de Vehículos</h2>
 
-<a class="btn btn-success mb-3" asp-action="Create">+ Crear Vehículo</a>
+<a class="btn btn-success mb-3" asp-controller="Vehiculos" asp-action="Create">+ Crear Vehículo</a>
 
 <table class="table table-striped mt-3">
     <thead class="table-dark">
@@ -21,55 +21,31 @@
             <th>Tipo</th>
             <th>Precio por Día</th>
             <th>Estado</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var v in Model)
+        @foreach (var vehiculo in Model)
         {
-            var placa = v.Placa?.ToLower();
-            var color = v.Color?.ToLower();
-            var modelo = v.Modelo?.ToLower();
-
-            var posiblesImagenes = new[]
-            {
-        Url.Content($"~/img/vehiculos/{placa}.jpg"),
-        Url.Content($"~/img/vehiculos/{color}.png"),
-        Url.Content($"~/img/vehiculos/{modelo}.jpg"),
-        Url.Content("~/img/vehiculos/default.jpg")
-        };
+            var imagenRuta = Url.Content($"~/img/{vehiculo.Color.ToLower()}.png");
             <tr>
                 <td>
-                    <img id="img-@v.VehiculoId"
-                         src="@posiblesImagenes[0]"
-                         alt="Imagen de @v.Modelo"
-                         width="100"
-                         height="60"
-                         style="object-fit:cover;" />
-
-                    <script>
-                        (function () {
-                            const img = document.getElementById("img-@v.VehiculoId");
-                            const fallbacks = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(posiblesImagenes.Skip(1).ToList()));
-                            let index = 0;
-
-                            img.onerror = function () {
-                                if (index < fallbacks.length) {
-                                    img.src = fallbacks[index++];
-                                }
-                            };
-                        })();
-                    </script>
+                    <img src="@imagenRuta" alt="@vehiculo.Color" width="100" height="60" style="object-fit:cover;" />
                 </td>
-                <td>@v.VehiculoId</td>
-                <td>@v.Marca</td>
-                <td>@v.Modelo</td>
-                <td>@v.Anio</td>
-                <td>@v.Placa</td>
-                <td>@v.Color</td>
-                <td>@v.Tipo</td>
-                <td>@v.PrecioPorDia.ToString("C")</td>
-                <td>@v.Estado</td>
+                <td>@vehiculo.VehiculoId</td>
+                <td>@vehiculo.Marca</td>
+                <td>@vehiculo.Modelo</td>
+                <td>@vehiculo.Anio</td>
+                <td>@vehiculo.Placa</td>
+                <td>@vehiculo.Color</td>
+                <td>@vehiculo.Tipo</td>
+                <td>@vehiculo.PrecioPorDia.ToString("C")</td>
+                <td>@vehiculo.Estado</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@vehiculo.VehiculoId">Editar</a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+

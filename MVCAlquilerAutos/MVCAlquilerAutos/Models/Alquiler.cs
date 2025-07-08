@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace MVCAlquilerAutos.Models
@@ -37,7 +38,13 @@ namespace MVCAlquilerAutos.Models
         [Display(Name = "Aceptó Términos")]
         public bool AceptoTerminos { get; set; }
 
-        // Para mostrar en la tabla o en formularios
+        // Relación con usuario
+        public Usuario? Usuario { get; set; }
+
+        // Relación con multas
+        public List<Multa>? Multas { get; set; }
+
+        // Propiedades auxiliares para mostrar en vistas (opcional)
         [Display(Name = "Usuario")]
         public string? NombreUsuario { get; set; }
 
@@ -48,3 +55,4 @@ namespace MVCAlquilerAutos.Models
         public string? NombreEmpleado { get; set; }
     }
 }
+
