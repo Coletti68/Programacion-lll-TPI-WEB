@@ -14,13 +14,11 @@ namespace MVCAlquilerAutos.Services
         Task<bool> UpdateAsync(int id, Alquiler alquiler);
         Task<bool> DeleteAsync(int id);
 
-        // Funciones adicionales
         Task<bool> FinalizarVencidosAsync();
         Task<bool> FinalizarAsync(int id);
         Task<bool> CancelarAsync(int id);
         Task<IEnumerable<Alquiler>> GetByEstadoAsync(string estado);
 
-        // Nuevas funcionalidades
         Task<IEnumerable<Alquiler>> GetHabilitadosAsync();
         Task<IEnumerable<Alquiler>> GetResumenPorUsuarioAsync(int usuarioId);
         Task<string> GetNumeradorPorIdAsync(int id);

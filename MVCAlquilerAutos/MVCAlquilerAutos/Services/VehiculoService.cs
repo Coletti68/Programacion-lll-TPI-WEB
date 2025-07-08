@@ -10,14 +10,13 @@ namespace MVCAlquilerAutos.Services
     public class VehiculoService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _baseUrl = "https://localhost:5001/api/Vehiculos";
+        private readonly string _baseUrl = "https://localhost:51366/api/Vehiculos";
 
         public VehiculoService()
         {
             _httpClient = new HttpClient();
         }
 
-        // ✅ Obtener todos los vehículos
         public async Task<List<Vehiculo>> GetVehiculosAsync()
         {
             try
@@ -32,7 +31,6 @@ namespace MVCAlquilerAutos.Services
         }
 
 
-        // ✅ Obtener un vehículo por ID
         public async Task<Vehiculo?> GetVehiculoByIdAsync(int id)
         {
             try
@@ -46,7 +44,6 @@ namespace MVCAlquilerAutos.Services
             }
         }
 
-        // ✅ Crear un nuevo vehículo
         public async Task<bool> CreateVehiculoAsync(Vehiculo vehiculo)
         {
             try
@@ -60,7 +57,6 @@ namespace MVCAlquilerAutos.Services
             }
         }
 
-        // ✅ Actualizar un vehículo existente
         public async Task<bool> UpdateVehiculoAsync(int id, Vehiculo vehiculo)
         {
             try
@@ -75,7 +71,6 @@ namespace MVCAlquilerAutos.Services
             }
         }
 
-        // ✅ Eliminar un vehículo
         public async Task<bool> DeleteVehiculoAsync(int id)
         {
             try
@@ -90,7 +85,6 @@ namespace MVCAlquilerAutos.Services
             }
         }
 
-        // ✅ Cambiar el estado de un vehículo (activo/inactivo)
         public async Task<bool> CambiarEstadoVehiculoAsync(int id, string nuevoEstado)
         {
             try

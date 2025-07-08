@@ -21,12 +21,11 @@ namespace MVCAlquilerAutos.Models
         public DateTime FechaMulta { get; set; }
 
         [Required(ErrorMessage = "El estado es obligatorio.")]
-        public string Estado { get; set; } = string.Empty; // Ej: "Pendiente", "Pagada"
+        public string Estado { get; set; } = string.Empty; 
 
         [Required(ErrorMessage = "El tipo de multa es obligatorio.")]
         public string Tipo { get; set; } = string.Empty;
 
-        // Relación con el alquiler
         public Alquiler? Alquiler { get; set; }
     }
 }

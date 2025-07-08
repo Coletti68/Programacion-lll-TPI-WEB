@@ -92,14 +92,12 @@ namespace MVCAlquilerAutos.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // 🟥 FINALIZAR VENCIDOS
         public async Task<IActionResult> FinalizarVencidos()
         {
             await _alquilerService.FinalizarVencidosAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        // 🟦 FILTRAR POR ESTADO (⚠️ Usa GetDetalladoAsync si querés mantener los nombres enriquecidos)
         public async Task<IActionResult> FiltrarPorEstado(string estado)
         {
             var lista = await _alquilerService.GetDetalladoAsync();
@@ -107,7 +105,6 @@ namespace MVCAlquilerAutos.Controllers
             return View("Index", filtrado);
         }
 
-        // 🟩 ALQUILERES HABILITADOS (opcional usar GetDetalladoAsync si están completos)
         public async Task<IActionResult> GetHabilitados()
         {
             var lista = await _alquilerService.GetDetalladoAsync();
@@ -115,14 +112,12 @@ namespace MVCAlquilerAutos.Controllers
             return View("Index", habilitados);
         }
 
-        // 🟨 RESUMEN POR USUARIO (mantiene llamada original, porque es un resumen simplificado)
         public async Task<IActionResult> ResumenPorUsuario(int usuarioId)
         {
             var lista = await _alquilerService.GetResumenPorUsuarioAsync(usuarioId);
             return View("Index", lista);
         }
 
-        // 🟪 FILTRAR POR RANGO DE FECHAS (usa detallado si querés campos extra)
         public async Task<IActionResult> AlquileresPorRango(DateTime desde, DateTime hasta)
         {
             var lista = await _alquilerService.GetDetalladoAsync();
@@ -130,7 +125,6 @@ namespace MVCAlquilerAutos.Controllers
             return View("Index", enRango);
         }
 
-        // ⬛ NUMERADOR POR ID (solo mensaje)
         public async Task<IActionResult> NumeradorPorId(int id)
         {
             var numerador = await _alquilerService.GetNumeradorPorIdAsync(id);

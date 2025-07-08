@@ -20,13 +20,11 @@ namespace MVCAlquilerAutos.Controllers
         }
 
 
-        // GET: /Vehiculos/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: /Vehiculos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Vehiculo vehiculo)
@@ -40,7 +38,6 @@ namespace MVCAlquilerAutos.Controllers
             return View(vehiculo);
         }
 
-        // GET: /Vehiculos/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
             var vehiculo = await _vehiculoService.GetVehiculoByIdAsync(id);
@@ -49,7 +46,6 @@ namespace MVCAlquilerAutos.Controllers
             return View(vehiculo);
         }
 
-        // POST: /Vehiculos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Vehiculo vehiculo)
@@ -66,14 +62,12 @@ namespace MVCAlquilerAutos.Controllers
             return View(vehiculo);
         }
 
-        // GET: /Vehiculos/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
             var success = await _vehiculoService.DeleteVehiculoAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
-        // POST: /Vehiculos/CambiarEstado/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CambiarEstado(int id)
@@ -82,7 +76,6 @@ namespace MVCAlquilerAutos.Controllers
             if (vehiculo == null)
                 return NotFound();
 
-            // Cambiar "Activo" <-> "Inactivo"
             var nuevoEstado = vehiculo.Estado == "Activo" ? "Inactivo" : "Activo";
 
             var success = await _vehiculoService.CambiarEstadoVehiculoAsync(id, nuevoEstado);

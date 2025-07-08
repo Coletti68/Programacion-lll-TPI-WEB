@@ -36,7 +36,6 @@ namespace MVCAlquilerAutos.Models
 
         public bool Activo { get; set; }
 
-        // Relación con alquileres
         public List<Alquiler>? Alquileres { get; set; }
     }
 }

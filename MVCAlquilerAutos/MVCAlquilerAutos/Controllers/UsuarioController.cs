@@ -13,14 +13,12 @@ namespace MVCAlquilerAutos.Controllers
             _usuarioService = usuarioService;
         }
 
-        // GET: /Usuario
         public async Task<IActionResult> Index()
         {
             var usuarios = await _usuarioService.GetAllUsuariosAsync();
             return View(usuarios);
         }
 
-        // GET: /Usuario/Details/5
         public async Task<IActionResult> Details(int id)
         {
             var usuario = await _usuarioService.GetUsuarioConAlquileresYMultasAsync(id);
@@ -30,7 +28,6 @@ namespace MVCAlquilerAutos.Controllers
             return View(usuario);
         }
 
-        // GET: /Usuario/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
             var usuario = await _usuarioService.GetUsuarioByIdAsync(id);
@@ -40,7 +37,6 @@ namespace MVCAlquilerAutos.Controllers
             return View(usuario);
         }
 
-        // POST: /Usuario/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Usuario usuario)
@@ -59,7 +55,6 @@ namespace MVCAlquilerAutos.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // POST: /Usuario/MarcarMultaPagada/5
         [HttpPost]
         public async Task<IActionResult> MarcarMultaPagada(int multaId)
         {

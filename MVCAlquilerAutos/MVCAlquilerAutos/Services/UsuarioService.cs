@@ -26,8 +26,7 @@ namespace MVCAlquilerAutos.Services
 
         public async Task<Usuario?> GetUsuarioConAlquileresYMultasAsync(int id)
         {
-            // Este endpoint debe devolver el usuario con alquileres y multas incluidas.
-            // Si no existe, habrá que crear uno en la API.
+         
             return await _httpClient.GetFromJsonAsync<Usuario>($"api/usuario/detalles/{id}");
         }
 
@@ -39,8 +38,7 @@ namespace MVCAlquilerAutos.Services
 
         public async Task<bool> MarcarMultaComoPagadaAsync(int multaId)
         {
-            // Asumo que la API tiene un endpoint para actualizar el estado de la multa.
-            // Por ejemplo: PUT api/multas/marcarpagada/{multaId}
+            
             var response = await _httpClient.PutAsync($"api/multas/marcarpagada/{multaId}", null);
             return response.IsSuccessStatusCode;
         }
