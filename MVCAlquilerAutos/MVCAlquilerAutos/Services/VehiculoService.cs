@@ -3,129 +3,35 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
-using System.Text.Json;
 
 namespace MVCAlquilerAutos.Services
 {
-    public class VehiculoService
+    public class VehiculoService : IVehiculoService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _baseUrl = "https://localhost:51366/api/Vehiculos";
+        private readonly string _baseUrl = "api/Vehiculos/listado";
 
-        public VehiculoService()
+        public VehiculoService(HttpClient httpClient)
         {
-            _httpClient = new HttpClient();
+            _httpClient = httpClient;
         }
 
-        // ✅ Obtener todos los vehículos
         public async Task<List<Vehiculo>> GetVehiculosAsync()
         {
-            try
-            {
-                var response = await _httpClient.GetFromJsonAsync<List<Vehiculo>>(_baseUrl);
-                return response ?? new List<Vehiculo>();
-            }
-            catch
-            {
-                return new List<Vehiculo>();
-            }
+            var response = await _httpClient.GetFromJsonAsync<Vehiculo[]>(_baseUrl);
+            return response?.ToList() ?? new List<Vehiculo>();
         }
 
-
-        // ✅ Obtener un vehículo por ID
         public async Task<Vehiculo?> GetVehiculoByIdAsync(int id)
         {
-            try
-            {
-                var url = $"{_baseUrl}/{id}";
-                return await _httpClient.GetFromJsonAsync<Vehiculo>(url);
-            }
-            catch
-            {
-                return null;
-            }
+            return await _httpClient.GetFromJsonAsync<Vehiculo>($"{_baseUrl}/{id}");
         }
 
-        // ✅ Crear un nuevo vehículo
         public async Task<bool> CreateVehiculoAsync(Vehiculo vehiculo)
         {
-            try
-            {
-                var response = await _httpClient.PostAsJsonAsync(_baseUrl, vehiculo);
-                return response.IsSuccessStatusCode;
-            }
-            catch
-            {
-                return false;
-            }
+            var response = await _httpClient.PostAsJsonAsync(_baseUrl, vehiculo);
+            return response.IsSuccessStatusCode;
         }
-
-        // ✅ Actualizar un vehículo existente
-        public async Task<bool> UpdateVehiculoAsync(int id, Vehiculo vehiculo)
-        {
-            try
-            {
-                var url = $"{_baseUrl}/{id}";
-                var response = await _httpClient.PutAsJsonAsync(url, vehiculo);
-                return response.IsSuccessStatusCode;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        // ✅ Eliminar un vehículo
-        public async Task<bool> DeleteVehiculoAsync(int id)
-        {
-            try
-            {
-                var url = $"{_baseUrl}/{id}";
-                var response = await _httpClient.DeleteAsync(url);
-                return response.IsSuccessStatusCode;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        // ✅ Cambiar el estado de un vehículo (activo/inactivo)
-        public async Task<bool> CambiarEstadoVehiculoAsync(int id, string nuevoEstado)
-        {
-            try
-            {
-                var url = $"{_baseUrl}/{id}/estado";
-                var content = new StringContent(
-                        System.Text.Json.JsonSerializer.Serialize(nuevoEstado),
-                        Encoding.UTF8,
-                        "application/json"
-                    );
-                var response = await _httpClient.PatchAsync(url, content);
-                return response.IsSuccessStatusCode;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public async Task<IEnumerable<Vehiculo>> GetListadoDetalladoAsync()
-        {
-            try
-            {
-                var url = $"{_baseUrl}/listado";
-                var response = await _httpClient.GetAsync(url);
-                if (!response.IsSuccessStatusCode) return [];
-
-                var json = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<IEnumerable<Vehiculo>>(json) ?? [];
-            }
-            catch
-            {
-                return [];
-            }
-        }
-
     }
 }
+

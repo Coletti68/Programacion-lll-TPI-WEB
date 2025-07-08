@@ -1,0 +1,42 @@
+﻿@model List<MVCAlquilerAutos.Models.UsuarioViewModel>
+
+@{
+    ViewData["Title"] = "Usuarios Registrados";
+}
+
+<h2>Usuarios Registrados</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>DNI</th>
+            <th>Teléfono</th>
+            <th>País</th>
+            <th>Dirección</th>
+            <th>Activo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.UsuarioId</td>
+                <td>@usuario.NombreCompleto</td>
+                <td>@usuario.Email</td>
+                <td>@usuario.DNI</td>
+                <td>@usuario.Telefono</td>
+                <td>@usuario.Pais</td>
+                <td>@usuario.Direccion</td>
+                <td>@(usuario.Activo ? "Sí" : "No")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@usuario.UsuarioId" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@usuario.UsuarioId" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

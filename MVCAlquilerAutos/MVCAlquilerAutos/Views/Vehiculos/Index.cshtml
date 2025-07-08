@@ -4,54 +4,54 @@
     ViewData["Title"] = "Listado de Vehículos";
 }
 
-<h2 class="mt-4">Listado de Vehículos</h2>
+<h2>Listado de Vehículos</h2>
 
-<a class="btn btn-success mb-3" asp-controller="Vehiculos" asp-action="Create">+ Crear Vehículo</a>
+<a class="btn btn-success mb-3" asp-action="Create">+ Crear Vehículo</a>
 
-<table class="table table-striped mt-3">
+<table class="table table-striped">
     <thead class="table-dark">
         <tr>
             <th>Imagen</th>
             <th>ID</th>
             <th>Marca</th>
             <th>Modelo</th>
-            <th>Año</th>
             <th>Placa</th>
             <th>Color</th>
             <th>Tipo</th>
             <th>Precio por Día</th>
             <th>Estado</th>
-            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var vehiculo in Model)
+        @if (!Model.Any())
         {
-            var imagenRuta = Url.Content($"~/img/{vehiculo.Color.ToLower()}.png");
             <tr>
-                <td>
-                    <img src="@imagenRuta" alt="@vehiculo.Color" width="100" height="60" style="object-fit:cover;" />
-                </td>
-                <td>@vehiculo.VehiculoId</td>
-                <td>@vehiculo.Marca</td>
-                <td>@vehiculo.Modelo</td>
-                <td>@vehiculo.Anio</td>
-                <td>@vehiculo.Placa</td>
-                <td>@vehiculo.Color</td>
-                <td>@vehiculo.Tipo</td>
-                <td>@vehiculo.PrecioPorDia.ToString("C")</td>
-                <td>@vehiculo.Estado</td>
-                <td>
-                    <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@vehiculo.VehiculoId">Editar</a>
-                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@vehiculo.VehiculoId">Eliminar</a>
-                    <form asp-action="CambiarEstado" asp-route-id="@vehiculo.VehiculoId" method="post" style="display:inline;">
-                        <button type="submit" class="btn btn-warning btn-sm">
-                            @(vehiculo.Estado == "Activo" ? "Desactivar" : "Activar")
-                        </button>
-                    </form>
-                </td>
+                <td colspan="10" class="text-center text-muted">No hay vehículos registrados.</td>
             </tr>
+        }
+        else
+        {
+            foreach (var v in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/img/vehiculos/@(v.Placa?.ToLower()).jpg"
+                             alt="Imagen de @v.Modelo"
+                             width="100"
+                             height="60"
+                             style="object-fit:cover;"
+                             onerror="this.src='@Url.Content("~/img/vehiculos/default.jpg")'" />
+                    </td>
+                    <td>@v.VehiculoId</td>
+                    <td>@v.Marca</td>
+                    <td>@v.Modelo</td>
+                    <td>@v.Placa</td>
+                    <td>@v.Color</td>
+                    <td>@v.Tipo</td>
+                    <td>@v.PrecioPorDia.ToString("C")</td>
+                    <td>@v.Estado</td>
+                </tr>
+            }
         }
     </tbody>
 </table>
-
