@@ -1,52 +1,47 @@
-﻿using System.Net.Http.Json;
+﻿using System.Net.Http;
+using System.Net.Http.Json;
 using MVCAlquilerAutos.Models;
-using MVCAlquilerAutos.Services;
-using System.Text;
-using System.Text.Json;
 
 namespace MVCAlquilerAutos.Services
 {
     public class UsuarioService : IUsuarioService
     {
-        private readonly HttpClient _http;
-        private readonly JsonSerializerOptions _jsonOptions;
+        private readonly HttpClient _httpClient;
 
-        public UsuarioService(HttpClient http)
+        public UsuarioService(HttpClient httpClient)
         {
-            _http = http;
-            _jsonOptions = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
+            _httpClient = httpClient;
         }
 
-        public async Task<List<UsuarioViewModel>> ObtenerUsuariosAsync()
+        public async Task<List<Usuario>> GetAllUsuariosAsync()
         {
-            var response = await _http.GetAsync("api/usuario");
-            if (!response.IsSuccessStatusCode) return new List<UsuarioViewModel>();
-
-            var usuarios = await response.Content.ReadFromJsonAsync<List<UsuarioViewModel>>(_jsonOptions);
-            return usuarios ?? new List<UsuarioViewModel>();
+            var usuarios = await _httpClient.GetFromJsonAsync<List<Usuario>>("api/usuario");
+            return usuarios ?? new List<Usuario>();
         }
 
-        public async Task<UsuarioViewModel?> ObtenerPorIdAsync(int id)
+        public async Task<Usuario?> GetUsuarioByIdAsync(int id)
         {
-            var response = await _http.GetAsync($"api/usuario/{id}");
-            if (!response.IsSuccessStatusCode) return null;
-
-            return await response.Content.ReadFromJsonAsync<UsuarioViewModel>(_jsonOptions);
+            return await _httpClient.GetFromJsonAsync<Usuario>($"api/usuario/{id}");
         }
 
-        public async Task<bool> ActualizarAsync(UsuarioViewModel model)
+        public async Task<Usuario?> GetUsuarioConAlquileresYMultasAsync(int id)
         {
-            var content = new StringContent(JsonSerializer.Serialize(model), Encoding.UTF8, "application/json");
-            var response = await _http.PutAsync($"api/usuario/{model.UsuarioId}", content);
+            // Este endpoint debe devolver el usuario con alquileres y multas incluidas.
+            // Si no existe, habrá que crear uno en la API.
+            return await _httpClient.GetFromJsonAsync<Usuario>($"api/usuario/detalles/{id}");
+        }
+
+        public async Task<bool> UpdateUsuarioAsync(Usuario usuario)
+        {
+            var response = await _httpClient.PutAsJsonAsync($"api/usuario/{usuario.UsuarioId}", usuario);
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> EliminarAsync(int id)
+        public async Task<bool> MarcarMultaComoPagadaAsync(int multaId)
         {
-            var response = await _http.DeleteAsync($"api/usuario/{id}");
+            // Asumo que la API tiene un endpoint para actualizar el estado de la multa.
+            // Por ejemplo: PUT api/multas/marcarpagada/{multaId}
+            var response = await _httpClient.PutAsync($"api/multas/marcarpagada/{multaId}", null);
             return response.IsSuccessStatusCode;
         }
     }

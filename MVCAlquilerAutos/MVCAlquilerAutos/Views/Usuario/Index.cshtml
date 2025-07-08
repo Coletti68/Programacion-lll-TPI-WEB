@@ -1,21 +1,18 @@
-﻿@model List<MVCAlquilerAutos.Models.UsuarioViewModel>
+﻿@model List<MVCAlquilerAutos.Models.Usuario>
 
 @{
-    ViewData["Title"] = "Usuarios Registrados";
+    ViewData["Title"] = "Usuarios";
 }
 
-<h2>Usuarios Registrados</h2>
+<h2>Listado de Usuarios</h2>
 
-<table class="table table-striped">
+<table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Email</th>
+            <th>Nombre Completo</th>
             <th>DNI</th>
+            <th>Email</th>
             <th>Teléfono</th>
-            <th>País</th>
-            <th>Dirección</th>
             <th>Activo</th>
             <th>Acciones</th>
         </tr>
@@ -24,17 +21,14 @@
         @foreach (var usuario in Model)
         {
             <tr>
-                <td>@usuario.UsuarioId</td>
                 <td>@usuario.NombreCompleto</td>
+                <td>@usuario.Dni</td>
                 <td>@usuario.Email</td>
-                <td>@usuario.DNI</td>
                 <td>@usuario.Telefono</td>
-                <td>@usuario.Pais</td>
-                <td>@usuario.Direccion</td>
                 <td>@(usuario.Activo ? "Sí" : "No")</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@usuario.UsuarioId" class="btn btn-sm btn-warning">Editar</a>
-                    <a asp-action="Delete" asp-route-id="@usuario.UsuarioId" class="btn btn-sm btn-danger">Eliminar</a>
+                    <a asp-action="Details" asp-route-id="@usuario.UsuarioId" class="btn btn-info btn-sm">Detalles</a>
+                    <a asp-action="Edit" asp-route-id="@usuario.UsuarioId" class="btn btn-warning btn-sm">Editar</a>
                 </td>
             </tr>
         }
