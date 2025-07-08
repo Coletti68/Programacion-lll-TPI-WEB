@@ -9,6 +9,7 @@ import ContactoView from './views/ContactoView';
 import PerfilView from './views/PerfilView';
 import OlvidePasswordView from './views/OlvidePasswordView';
 import ResetPasswordView from './views/ResetPasswordView'; 
+import PromoView from './views/PromoView';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/perfil" element={<PerfilView />} />
           <Route path="/olvide-password" element={<OlvidePasswordView />} />
           <Route path="/reset-password" element={<ResetPasswordView />} />
+          <Route path="/promo" element={<PromoView />} />
         </Routes>
       </main>
       <Footer />

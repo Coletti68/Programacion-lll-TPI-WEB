@@ -10,7 +10,7 @@ namespace MVCAlquilerAutos.Services
     public class VehiculoService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _baseUrl = "https://localhost:51366/api/Vehiculos";
+        private readonly string _baseUrl = "https://localhost:5001/api/Vehiculos";
 
         public VehiculoService()
         {

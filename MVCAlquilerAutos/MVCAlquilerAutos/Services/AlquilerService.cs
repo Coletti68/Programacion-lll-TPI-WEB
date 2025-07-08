@@ -13,7 +13,7 @@ namespace MVCAlquilerAutos.Services
         public AlquilerService(HttpClient httpClient)
         {
             _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("https://localhost:51366/api/Alquiler/");
+            _httpClient.BaseAddress = new Uri("https://localhost:5001/api/Alquiler/");
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
