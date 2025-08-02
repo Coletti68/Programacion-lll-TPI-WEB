@@ -7,15 +7,19 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient<MVCAlquilerAutos.Services.IAlquilerService, MVCAlquilerAutos.Services.AlquilerService>(client =>
 {
-    client.BaseAddress = new Uri("https://localhost:5001/"); 
+    client.BaseAddress = new Uri("https://localhost:5173/");
 });
 
 
 builder.Services.AddHttpClient<IUsuarioService, UsuarioService>(client =>
 {
-    client.BaseAddress = new Uri("https://localhost:5001/");
+    client.BaseAddress = new Uri("https://localhost:5173/");
 });
-
+builder.Services.AddAntiforgery(options =>
+{
+    options.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.Always;
+    options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
+});
 
 var app = builder.Build();
 

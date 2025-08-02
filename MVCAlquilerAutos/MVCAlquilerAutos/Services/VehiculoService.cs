@@ -10,7 +10,7 @@ namespace MVCAlquilerAutos.Services
     public class VehiculoService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _baseUrl = "https://localhost:5001/api/Vehiculos";
+        private readonly string _baseUrl = "https://localhost:5173/api/Vehiculos";
 
         public VehiculoService()
         {
@@ -49,10 +49,13 @@ namespace MVCAlquilerAutos.Services
             try
             {
                 var response = await _httpClient.PostAsJsonAsync(_baseUrl, vehiculo);
+                var contenido = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Respuesta API: {response.StatusCode} - {contenido}");
                 return response.IsSuccessStatusCode;
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine($"Error al crear vehículo: {ex.Message}");
                 return false;
             }
         }
