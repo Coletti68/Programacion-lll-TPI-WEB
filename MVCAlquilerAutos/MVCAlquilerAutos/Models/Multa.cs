@@ -7,25 +7,26 @@ namespace MVCAlquilerAutos.Models
     {
         public int MultaId { get; set; }
 
-        [Required(ErrorMessage = "El alquiler es obligatorio.")]
+        [Required]
         public int AlquilerId { get; set; }
 
-        [Required(ErrorMessage = "La descripción es obligatoria.")]
-        public string Descripcion { get; set; } = string.Empty;
+        [Required]
+        [StringLength(200)]
+        public string Descripcion { get; set; }
 
-        [Required(ErrorMessage = "El monto es obligatorio.")]
-        [Range(0, double.MaxValue, ErrorMessage = "El monto debe ser mayor o igual a cero.")]
+        [Required]
+        [Range(0, 999999.99)]
         public decimal Monto { get; set; }
 
-        [Display(Name = "Fecha de Multa")]
-        public DateTime FechaMulta { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime FechaMulta { get; set; } = DateTime.Today;
 
-        [Required(ErrorMessage = "El estado es obligatorio.")]
-        public string Estado { get; set; } = string.Empty; 
+        [Required]
+        public string Estado { get; set; }
 
-        [Required(ErrorMessage = "El tipo de multa es obligatorio.")]
-        public string Tipo { get; set; } = string.Empty;
-
-        public Alquiler? Alquiler { get; set; }
+        [Required]
+        public string Tipo { get; set; }
+    
+public Alquiler? Alquiler { get; set; }
     }
 }

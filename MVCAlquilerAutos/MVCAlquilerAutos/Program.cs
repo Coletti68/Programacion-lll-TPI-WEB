@@ -15,6 +15,14 @@ builder.Services.AddHttpClient<IUsuarioService, UsuarioService>(client =>
 {
     client.BaseAddress = new Uri("https://localhost:5173/");
 });
+builder.Services.AddHttpClient<ContactoService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:5173/"); 
+});
+builder.Services.AddHttpClient<MultaService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:5173/"); 
+});
 builder.Services.AddAntiforgery(options =>
 {
     options.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.Always;
